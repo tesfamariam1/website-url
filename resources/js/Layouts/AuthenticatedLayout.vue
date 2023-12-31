@@ -6,6 +6,13 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
+import {
+    Document,
+    Menu as IconMenu,
+    Location,
+    Setting, Platform, OfficeBuilding, DataLine, Stopwatch, StarFilled,
+} from '@element-plus/icons-vue'
+import Dashboard from "@/Pages/Dashboard.vue";
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -143,10 +150,58 @@ const showingNavigationDropdown = ref(false);
                 </div>
             </header>
 
-            <!-- Page Content -->
-            <main>
-                <slot />
-            </main>
+            <div class="flex justify-between w-full">
+                <div class="w-[30%]">
+                    <el-row>
+                        <el-col :span="12">
+                            <el-menu
+                                default-active="1"
+                                class="el-menu-vertical-demo min-h-screen"
+                                @open="handleOpen"
+                                @close="handleClose"
+                            >
+                                <el-menu-item index="1">
+                                    <Link :href="route('dashboard')">
+                                        <el-icon><icon-menu /></el-icon>
+                                        <span>Dashboard</span>
+                                    </Link>
+                                </el-menu-item>
+                                <el-menu-item index="2">
+                                    <Link :href="route('website.index')">
+                                        <el-icon><platform /></el-icon>
+                                        <span>Websites</span>
+                                    </Link>
+                                </el-menu-item>
+                                <el-menu-item index="3">
+                                    <el-icon><office-building /></el-icon>
+                                    <span>Organizations</span>
+                                </el-menu-item>
+                                <el-menu-item index="4">
+                                    <el-icon><location /></el-icon>
+                                    <span>Cities</span>
+                                </el-menu-item>
+                                <el-menu-item index="5">
+                                    <el-icon><data-line /></el-icon>
+                                    <span>Active URLs</span>
+                                </el-menu-item>
+                                <el-menu-item index="6">
+                                    <el-icon><stopwatch /></el-icon>
+                                    <span>InActive URLs</span>
+                                </el-menu-item>
+                                <el-menu-item index="7">
+                                    <el-icon><setting /></el-icon>
+                                    <span>Settings</span>
+                                </el-menu-item>
+                            </el-menu>
+                        </el-col>
+                    </el-row>
+                </div>
+                <!-- Page Content -->
+                <main class="w-[70%] py-12 pr-64">
+                    <slot />
+                </main>
+            </div>
+
         </div>
     </div>
 </template>
